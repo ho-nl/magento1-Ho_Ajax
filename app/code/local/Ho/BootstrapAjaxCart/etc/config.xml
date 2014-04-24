@@ -1,0 +1,146 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * Ho_BootstrapAjaxCart
+ *
+ * NOTICE OF LICENSE
+ *
+ * This source file is subject to the H&O Commercial License
+ * that is bundled with this package in the file LICENSE_HO.txt.
+ * It is also available through the world-wide-web at this URL:
+ * http://www.h-o.nl/license
+ * If you did not receive a copy of the license and are unable to
+ * obtain it through the world-wide-web, please send an email
+ * to info@h-o.com so we can send you a copy immediately.
+ *
+ * @category    Ho
+ * @package     Ho_BootstrapAjaxCart
+ * @copyright   Copyright © 2013 H&O (http://www.h-o.nl/)
+ * @license     H&O Commercial License (http://www.h-o.nl/license)
+ * @author      Paul Hachmang – H&O <info@h-o.nl>
+ *
+ * 
+ */
+-->
+
+<config>
+	<modules>
+		<Ho_BootstrapAjaxCart>
+			<version>0.1.0</version>
+		</Ho_BootstrapAjaxCart>
+	</modules>
+	<global>
+		<blocks>
+			<ho_bootstrapajaxcart>
+				<class>Ho_BootstrapAjaxCart_Block</class>
+			</ho_bootstrapajaxcart>
+		</blocks>
+		<helpers>
+			<ho_bootstrapajaxcart>
+				<class>Ho_BootstrapAjaxCart_Helper</class>
+			</ho_bootstrapajaxcart>
+		</helpers>
+		<models>
+			<ho_bootstrapajaxcart>
+				<class>Ho_BootstrapAjaxCart_Model</class>
+                <resourceModel>ho_bootstrapajaxcart_resource</resourceModel>
+			</ho_bootstrapajaxcart>
+            <ho_bootstrapajaxcart_resource>
+                <class>Ho_BootstrapAjaxCart_Model_Resource</class>
+                <!--<entities>-->
+                    <!--<tablename>-->
+                        <!--<table>ho_bootstrapajaxcart_tablename</table>-->
+                    <!--</tablename>-->
+                <!--</entities>-->
+            </ho_bootstrapajaxcart_resource>
+		</models>
+        <resources>
+            <ho_bootstrapajaxcart_setup>
+                <setup>
+                    <module>Ho_BootstrapAjaxCart</module>
+                    <!--<class>Ho_BootstrapAjaxCart_Model_Resource_Setup</class>-->
+                </setup>
+            </ho_bootstrapajaxcart_setup>
+        </resources>
+
+		<!--<events>-->
+			<!--<http_response_send_before>-->
+				<!--<observers>-->
+					<!--<ho_bootstrapajaxcart_head_observer>-->
+						<!--<type>singleton</type>-->
+						<!--<class>Ho_BootstrapAjaxCart_Model_Observer</class>-->
+						<!--<method>check</method>-->
+					<!--</ho_bootstrapajaxcart_head_observer>-->
+				<!--</observers>-->
+			<!--</http_response_send_before>-->
+		<!--</events>-->
+	</global>
+	<frontend>
+		<!--<routers>-->
+			<!--<ho_bootstrapajaxcart>-->
+				<!--<use>standard</use>-->
+				<!--<args>-->
+					<!--<module>Ho_BootstrapAjaxCart</module>-->
+					<!--<frontName>ho_bootstrapajaxcart</frontName>-->
+				<!--</args>-->
+			<!--</ho_bootstrapajaxcart>-->
+		<!--</routers>-->
+		<layout>
+			<updates>
+				<ho_bootstrapajaxcart module="ho_bootstrapajaxcart">
+					<file>ho/bootstrapajaxcart.xml</file>
+				</ho_bootstrapajaxcart>
+			</updates>
+		</layout>
+        <!--<translate>-->
+            <!--<modules>-->
+                <!--<ho_bootstrapajaxcart>-->
+                    <!--<files>-->
+                        <!--<default>Ho_BootstrapAjaxCart.csv</default>-->
+                    <!--</files>-->
+                <!--</ho_bootstrapajaxcart>-->
+            <!--</modules>-->
+        <!--</translate>-->
+	</frontend>
+    <adminhtml>
+        <!--<translate>-->
+            <!--<modules>-->
+                <!--<ho_bootstrapajaxcart>-->
+                    <!--<files>-->
+                        <!--<default>Ho_BootstrapAjaxCart.csv</default>-->
+                    <!--</files>-->
+                <!--</ho_bootstrapajaxcart>-->
+            <!--</modules>-->
+        <!--</translate>-->
+    </adminhtml>
+    <admin>
+        <!--<routers>-->
+            <!--<adminhtml>-->
+                <!--<args>-->
+                    <!--<modules>-->
+                        <!--<Ho_BootstrapAjaxCart before="Mage_Adminhtml">Ho_BootstrapAjaxCart_Adminhtml</Ho_BootstrapAjaxCart>-->
+                    <!--</modules>-->
+                <!--</args>-->
+            <!--</adminhtml>-->
+        <!--</routers>-->
+    </admin>
+	<default>
+		<!--<ho_bootstrapajaxcart>-->
+			<!--<group>-->
+				<!--<variable>somevar</variable>-->
+			<!--</group>-->
+		<!--</ho_bootstrapajaxcart>-->
+	</default>
+	<!--<crontab>-->
+		<!--<jobs>-->
+			<!--<ho_bootstrapajaxcart>-->
+				<!--<schedule>-->
+					<!--<cron_expr>* * * * *</cron_expr>-->
+				<!--</schedule>-->
+				<!--<run>-->
+					<!--<model>ho_bootstrapajaxcart/observer::</model>-->
+				<!--</run>-->
+			<!--</ho_bootstrapajaxcart>-->
+		<!--</jobs>-->
+	<!--</crontab>-->
+</config>
