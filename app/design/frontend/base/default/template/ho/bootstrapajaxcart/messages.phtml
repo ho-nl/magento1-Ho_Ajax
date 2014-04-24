@@ -1,0 +1,63 @@
+<?php
+/**
+ * Mage_Core
+ *
+ * NOTICE OF LICENSE
+ *
+ * This source file is subject to the H&O Commercial License
+ * that is bundled with this package in the file LICENSE_HO.txt.
+ * It is also available through the world-wide-web at this URL:
+ * http://www.h-o.nl/license
+ * If you did not receive a copy of the license and are unable to
+ * obtain it through the world-wide-web, please send an email
+ * to info@h-o.com so we can send you a copy immediately.
+ *
+ * @category    Mage
+ * @package     Mage_Core
+ * @copyright   Copyright © 2013 H&O (http://www.h-o.nl/)
+ * @license     H&O Commercial License (http://www.h-o.nl/license)
+ * @author      Paul Hachmang – H&O <info@h-o.nl>
+ */
+
+/** @var $this Ho_BootstrapAjaxCart_Block_Messages */
+?>
+<?php
+$_messages = $this->getMessagesBlock()->getMessages();
+?>
+<?php if ($_messages): ?>
+<div data-ho-ajax="<?php echo $this->getNameInLayout(); ?>" data-ho-ajax-group="all">
+    <div class="alert-overlay">
+        <?php foreach ($_messages as $_message): ?>
+        <?php /** @var Mage_Core_Model_Message_Abstract $_message */ ?>
+        <div class="alert alert-<?php echo $this->getMessageCssClass($_message); ?> fade in">
+            <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
+            <span><?php echo $_message->getText(); ?></span>
+        </div>
+        <?php endforeach; ?>
+        <?php /*
+<!--        <div class="alert alert-danger fade in">-->
+<!--            <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>-->
+<!--            <span>Oh snap! You got an error! — <a href="#alert-second" data-toggle="collapse" class="small">View Details</a></span>-->
+<!--            <div id="alert-second" class="collapse small">-->
+<!--                Change this and that and try again.-->
+<!--                   Duis mollis, est non commodo luctus, nisi erat porttitor ligula, eget lacinia odio sem nec elit.-->
+<!--                   Cras mattis consectetur purus sit amet fermentum.-->
+<!--            </div>-->
+<!--        </div>-->
+<!---->
+<!--        <div class="alert alert-danger fade in">-->
+<!--            <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>-->
+<!--            <span>The requested quantity for "10 Gulden 1924 – Fine" is not available.</span>-->
+<!--        </div>-->
+<!---->
+<!--        <div class="alert alert-success fade in">-->
+<!--            <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>-->
+<!--            <span>20 Gulden 1939 – Very fine was added to your shopping cart.</span>-->
+<!--        </div>-->
+
+ */ ?>
+    </div>
+</div>
+<?php else: ?>
+<div data-ho-ajax="<?php echo $this->getNameInLayout(); ?>" data-ho-ajax-group="all"></div>
+<?php endif; ?>

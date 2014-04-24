@@ -1,6 +1,6 @@
-<?xml version="1.0"?><!--
+<?php
 /**
- * Ho_BootstrapAjaxCart
+ * Mage_Core
  *
  * NOTICE OF LICENSE
  *
@@ -12,27 +12,15 @@
  * obtain it through the world-wide-web, please send an email
  * to info@h-o.com so we can send you a copy immediately.
  *
- * @category    Ho
- * @package     Ho_BootstrapAjaxCart
+ * @category    Mage
+ * @package     Mage_Core
  * @copyright   Copyright © 2013 H&O (http://www.h-o.nl/)
  * @license     H&O Commercial License (http://www.h-o.nl/license)
  * @author      Paul Hachmang – H&O <info@h-o.nl>
  *
  * 
  */
--->
 
-<config>
-    <modules>
-        <Ho_BootstrapAjaxCart>
-            <active>true</active>
-            <codePool>local</codePool>
-            <depends>
-                <Mage_Core />
-                <Mage_Catalog />
-                <Mage_Checkout />
-                <Ho_Bootstrap/>
-            </depends>
-        </Ho_BootstrapAjaxCart>
-    </modules>
-</config>
+/** @var $this Mage_Core_Block_Template */
+?>
+<div data-ho-ajax="<?php echo $this->getBlockName(); ?>" data-ho-ajax-group="<?php echo $this->getAjaxGroup(); ?>"></div>

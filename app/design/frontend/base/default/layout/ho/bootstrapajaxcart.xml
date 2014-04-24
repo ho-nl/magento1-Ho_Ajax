@@ -28,11 +28,14 @@
             <action method="addItem"><type>skin_js</type><script>ho/bootstrap-ajaxcart/js/ajax.js</script><params/><if/><cond/><group>default</group></action>
         </reference>
         <reference name="before_body_end">
-            <block type="core/template" name="ho_ajax_modal" template=""/>
+            <block type="core/template" name="ho.bootstrapajaxcart.messages.holder" template="ho/bootstrapajaxcart/holder.phtml">
+                <action method="setBlockName"><name>ho.bootstrapajaxcart.messages</name></action>
+                <action method="setAjaxGroup"><group>all</group></action>
+            </block>
         </reference>
     </default>
 
-    <easy_ajax_checkout_cart_add>
-
-    </easy_ajax_checkout_cart_add>
+    <ho_ajax>
+        <block type="ho_bootstrapajaxcart/messages" name="ho.bootstrapajaxcart.messages" template="ho/bootstrapajaxcart/messages.phtml" />
+    </ho_ajax>
 </layout>

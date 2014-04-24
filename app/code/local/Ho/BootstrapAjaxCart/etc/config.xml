@@ -92,6 +92,35 @@
 				</ho_bootstrapajaxcart>
 			</updates>
 		</layout>
+        <events>
+            <controller_action_layout_load_before>
+                <observers>
+                    <ho_bootstrapajaxcart>
+                        <type>singleton</type>
+                        <class>ho_bootstrapajaxcart/observer</class>
+                        <method>addHandles</method>
+                    </ho_bootstrapajaxcart>
+                </observers>
+            </controller_action_layout_load_before>
+            <controller_action_layout_render_before>
+                <observers>
+                    <ho_bootstrapajaxcart>
+                        <type>singleton</type>
+                        <class>ho_bootstrapajaxcart/observer</class>
+                        <method>getJson</method>
+                    </ho_bootstrapajaxcart>
+                </observers>
+            </controller_action_layout_render_before>
+            <controller_response_redirect>
+                <observers>
+                    <ho_bootstrapajaxcart>
+                        <type>singleton</type>
+                        <class>ho_bootstrapajaxcart/observer</class>
+                        <method>handleRedirect</method>
+                    </ho_bootstrapajaxcart>
+                </observers>
+            </controller_response_redirect>
+        </events>
         <!--<translate>-->
             <!--<modules>-->
                 <!--<ho_bootstrapajaxcart>-->
