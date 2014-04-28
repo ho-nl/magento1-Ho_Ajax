@@ -18,7 +18,6 @@
  * @author      Paul Hachmang – H&O <info@h-o.nl>
  */
 
-
 ;jQuery.fn.serializeObject = function()
 {
     var o = {};
@@ -35,6 +34,7 @@
     });
     return o;
 };
+
 
 ;(function ( $, window, document, undefined ) {
     "use strict";
@@ -95,11 +95,10 @@
 
             e.preventDefault();
 
+
             $form.trigger('requestStart.hoajax');
             $form.trigger('requestStartGroup.hoajax'+group);
-            self.getUrl(url, group, 'POST', data, function(){
-                console.log('done');
-            });
+            self.getUrl(url, group, 'POST', data);
         });
     };
 
@@ -194,7 +193,8 @@
 
 
     Plugin.prototype.getBlocks = function (group) {
-        _blocks = {}
+        _blocks = {};
+
         $('[data-ho-ajax]').each(function () {
             _blocks[$(this).data('ho-ajax')] = $(this);
         });
@@ -205,8 +205,9 @@
 
         var _resultBlocks = {};
         $.each(_blocks, function(index, element){
-            var elementGroup = $(element).data('ho-ajax-group');
-            if (elementGroup == undefined || elementGroup == group || elementGroup == 'all') {
+            var elementGroup = $(element).data('ho-ajax-group').split(" ");
+
+            if (elementGroup == undefined || $.inArray(group, elementGroup) || $.inArray('all', elementGroup)) {
                 _resultBlocks[index] = element;
             }
         });
@@ -286,16 +287,28 @@ jQuery(function ($) {
     //initialize the module, start watching URL's
     $(document).hoAjax();
 
-    // Initialize the cart.
-    var cartDropdownIsOpen;
-    $(document).on('responseStartGroup.hoajax.cart', function(){
+    // Initialize the cart and wishlist/
+    var cartDropdownIsOpen = false;
+    var wishlistDropdownIsOpen = false;
+    $(document).on('responseStartGroup.hoajax.cart responseStartGroup.hoajax.wishlist', function(){
         var $cart = $(document).hoAjax('getBlock', 'cart_header');
         cartDropdownIsOpen = $cart.hasClass('open');
+
+        var $wishlist = $(document).hoAjax('getBlock', 'wishlist_header');
+        if ($wishlist.length) {
+            wishlistDropdownIsOpen = $wishlist.hasClass('open');
+        }
     });
-    $(document).on('responseFinishGroup.hoajax.cart', function (e) {
+
+    $(document).on('responseFinishGroup.hoajax.cart responseFinishGroup.hoajax.wishlist', function(){
         if (cartDropdownIsOpen) {
             var $cart = $(document).hoAjax('getBlock', 'cart_header');
             $cart.children('a').dropdown('toggle');
+        }
+
+        if (wishlistDropdownIsOpen) {
+            var $wishlist = $(document).hoAjax('getBlock', 'wishlist_header');
+            $wishlist.children('a').dropdown('toggle');
         }
     });
 });
