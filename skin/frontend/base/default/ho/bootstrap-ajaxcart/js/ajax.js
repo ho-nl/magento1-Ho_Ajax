@@ -35,6 +35,17 @@
     return o;
 };
 
+VarienForm.prototype.submit = function (url){
+    if(this.validator && this.validator.validate()){
+        var $form = jQuery(this.form);
+        if ($form.data('ho-ajax-form') != undefined) {
+            $form.trigger('requestInit.hoajax');
+        } else {
+            this.form.submit();
+        }
+    }
+}
+
 
 ;(function ( $, window, document, undefined ) {
     "use strict";
@@ -72,7 +83,6 @@
     Plugin.prototype.init = function () {
         var self = this;
 
-
         $(document).on('click', '[data-ho-ajax-link]', function(e){
             var $link = $(this),
                 group = $link.data('ho-ajax-link');
@@ -87,7 +97,7 @@
         });
 
         //check if it works on the product page
-        $(document).on('submit', '[data-ho-ajax-form]', function(e){
+        $(document).on('submit requestInit.hoajax', '[data-ho-ajax-form]', function(e){
             var $form = $(this),
                 data = $form.serializeObject(),
                 url = $form.attr('action'),
@@ -95,10 +105,10 @@
 
             e.preventDefault();
 
-
             $form.trigger('requestStart.hoajax');
             $form.trigger('requestStartGroup.hoajax'+group);
             self.getUrl(url, group, 'POST', data);
+            return false;
         });
     };
 
@@ -131,7 +141,6 @@
             _ajaxResultCount[group] = 0;
         }
         var ajaxRequestNumber = ++_ajaxRequestCount[group];
-
 
         var requestData = {
             type: type,
@@ -207,7 +216,7 @@
         $.each(_blocks, function(index, element){
             var elementGroup = $(element).data('ho-ajax-group').split(" ");
 
-            if (elementGroup == undefined || $.inArray(group, elementGroup) || $.inArray('all', elementGroup)) {
+            if (elementGroup == undefined || $.inArray(group, elementGroup) >= 0 || $.inArray('all', elementGroup) >= 0) {
                 _resultBlocks[index] = element;
             }
         });

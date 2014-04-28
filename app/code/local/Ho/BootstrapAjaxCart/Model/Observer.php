@@ -65,11 +65,6 @@ class Ho_BootstrapAjaxCart_Model_Observer
         }
     }
 
-
-    public function prepareRedirect() {
-        var_dump('uea');exit;
-    }
-
     /**
      * Add ho_ajax handles
      * @event controller_action_layout_load_before
