@@ -55,7 +55,7 @@ class Ho_BootstrapAjaxCart_Model_Observer
         $core = $this->_getCore();
         if ($core->isHoAjax() && !$core->isProceed()) {
             $core->setProceed();
-            /** @var $response VF_EasyAjax_Model_Response */
+            /** @var $response Ho_BootstrapAjaxCart_Model_Response */
             $response = Mage::getModel('ho_bootstrapajaxcart/response');
 
             $response->loadContent(
