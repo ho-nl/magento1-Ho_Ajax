@@ -54,6 +54,12 @@ class Ho_BootstrapAjaxCart_Model_Response extends Varien_Object
             return;
         }
 
+        $key = array_search('ho.bootstrapajaxcart.messages', $blockNames);
+        if ($key) {
+            unset($blockNames[$key]);
+            array_unshift($blockNames, 'ho.bootstrapajaxcart.messages');
+        }
+
         $layout = Mage::app()->getLayout();
         $handles = $layout->getUpdate()->getHandles();
 

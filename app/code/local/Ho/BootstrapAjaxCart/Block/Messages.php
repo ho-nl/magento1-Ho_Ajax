@@ -30,7 +30,10 @@ class Ho_BootstrapAjaxCart_Block_Messages extends Mage_Core_Block_Template
         'success' => 'success'
     );
     public function getMessages() {
-        return $this->getMessagesBlock()->getMessages();
+        $messagesBlock = $this->getMessagesBlock();
+        $messages = $messagesBlock->getMessages();
+        $messagesBlock->getMessageCollection()->clear();
+        return $messages;
     }
 
     public function getMessageCssClass(Mage_Core_Model_Message_Abstract $message) {
