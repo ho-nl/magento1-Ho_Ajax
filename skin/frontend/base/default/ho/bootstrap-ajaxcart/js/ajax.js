@@ -322,17 +322,12 @@ jQuery(function ($) {
     });
 
     $(document).on('responseFinishBlock.hoajax.ho.bootstrapajaxcart.messages', function(){
-        $('.alert-overlay').find('>div').each(
-            function(){
-                var _this = this;
-                setTimeout(function(){
-                    $(_this).removeClass('in');
-                    setTimeout(function(){
-                        $(_this).remove();
-                    }, 200);
-                }, 4000);
-            }
-        );
+        $('.alert-overlay').find('>div').each(function(){
+            var _this = this;
+            setTimeout(function(){
+                $(_this).alert('close');
+            }, 8000);
+        });
     });
 });
 
