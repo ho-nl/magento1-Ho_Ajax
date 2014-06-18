@@ -159,6 +159,7 @@ VarienForm.prototype.submit = function (url){
 
                 if (data.redirect != undefined) {
                     self.getUrl(data.redirect, group, type, data, callback);
+                    return;
                 } else {
                     self._processResponse(group, data, requestData);
                 }
