@@ -1,4 +1,4 @@
-# Ho_BoostrapAjaxCart
+# Ho_AjaxCart
 The idea is that it should be possible to load a block on a page without creating a new controller. Consider this as a partial-page reload framework.
 
 In our own private frontend framework we've implemented ajax carts, ajax wishlists and live search without writing large scripts to do this.
