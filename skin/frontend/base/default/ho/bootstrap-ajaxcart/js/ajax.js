@@ -13,7 +13,7 @@
  *
  * @category    Ho
  * @package     Ho_BootstrapJAjaxCart
- * @copyright   Copyright © 2013 H&O (http://www.h-o.nl/)
+ * @copyright   Copyright © 2014 H&O (http://www.h-o.nl/)
  * @license     H&O Commercial License (http://www.h-o.nl/license)
  * @author      Paul Hachmang – H&O <info@h-o.nl>
  */
