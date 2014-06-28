@@ -6,7 +6,7 @@ In our own private frontend framework we've implemented ajax carts, ajax wishlis
 In short, have an action source:
 ```
 <a href="#" data-ho-ajax-link="cart">foo</a>
-``
+```
 
 And have target:
 ```
@@ -117,7 +117,8 @@ $(document).hoAjax('getBlocks', blockName);
 
 ## Events
 
-We trigger the following events
+We trigger the following events:
+
 ```JS
 //when a link is pressed, this is triggered immediately
 $link.trigger('requestStart.hoajax');
@@ -140,6 +141,7 @@ $(document).trigger('responseFinishGroup.hoajax.'+group);
 ```
 
 You can use them in the following way:
+
 ```JS
 $(document).on('responseFinishGroup.hoajax.cart', function(){
 	//Do some additional stuff
