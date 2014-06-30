@@ -4,12 +4,12 @@ The idea is that it should be possible to load a block on a page without creatin
 In our own private frontend framework we've implemented ajax carts, ajax wishlists and live search without writing large scripts to do this.
 
 In short, have an action source:
-```
+```HTML
 <a href="#" data-ho-ajax-link="cart">foo</a>
 ```
 
 And have target:
-```
+```HTML
 <div data-ho-ajax="<?php echo $this->getNameInLayout(); ?>" data-ho-ajax-group="cart">
    ...
 </div>
@@ -30,7 +30,7 @@ We can have two action sources, `data-ho-ajax-link` and `data-ho-ajax-form` and 
 ### Links
 We have the following cart button
 
-```PHP
+```HTML
 <a title="<?php echo Mage::helper('catalog')->__('Add to Cart') ?>"
         class="btn btn-cart btn-default"
         data-ho-ajax-link="cart"
@@ -46,7 +46,7 @@ You can see the `data-ho-ajax-link` attribute that specifies that it is a link t
 
 *Forms are still experimental, since the form is serialzed and does a POST over javascript, which can cause problems with file uploads*
 
-```PHP
+```HTML
 <form method="get" class="form-search" role="search" data-ho-ajax-form="ajaxsearch">
     <div class="input-group">
         <input id="ajaxsearch-input" type="text"
@@ -78,7 +78,7 @@ $(document).hoAjax('refreshPage', 'cart');
 ## Blocks
 In the template of the block that needs to be reloaded, we add two attributes, one with the name of the block and another with the
 
-```PHP
+```HTML
 <div class="cart" data-ho-ajax="<?php echo $this->getNameInLayout(); ?>" data-ho-ajax-group="cart account">
 	...
 </div>
