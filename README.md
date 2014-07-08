@@ -148,3 +148,6 @@ $(document).on('responseFinishGroup.hoajax.cart', function(){
 });
 ```
 
+
+# Credits
+Credits for the idea go to https://github.com/hws47a/VF_EasyAjax. I've completely rewritten the module to suit our needs.
