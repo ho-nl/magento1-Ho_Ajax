@@ -1,0 +1,16 @@
+{
+    "name": "ho-nl/ho_ajax",
+    "license": "OSL-3.0",
+    "type": "magento-module",
+    "description": "Possible to load a block on a page without creating a new controller. Consider this as a partial-page reload framework.",
+    "homepage": "https://github.com/ho-nl/Ho_Import",
+    "require": {
+        "magento-hackathon/magento-composer-installer": "*",
+    },
+    "authors":[
+        {
+            "name":"Paul Hachmang - H&O",
+            "email":"paul@h-o.nl"
+        }
+    ]
+}
