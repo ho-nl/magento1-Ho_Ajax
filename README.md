@@ -148,6 +148,8 @@ $(document).on('responseFinishGroup.hoajax.cart', function(){
 });
 ```
 
+## Magento handles
+For each request the `ho_ajax handle` is loaded as well as the `ho_ajax_[current_controller_handle]`, for example: `ho_ajax_catalogsearch_result_index` or `ho_ajax_catalog_product_view`.
 
 # Credits
 Credits for the idea go to https://github.com/hws47a/VF_EasyAjax. I've completely rewritten the module to suit our needs.
