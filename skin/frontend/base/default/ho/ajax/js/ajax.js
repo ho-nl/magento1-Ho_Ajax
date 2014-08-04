@@ -87,16 +87,21 @@ VarienForm.prototype.submit = function (url){
             var $link = $(this),
                 group = $link.data('ho-ajax-link');
 
+            if (typeof $link.button == 'function') {
+                $link.button('loading');
+            }
+
             e.preventDefault();
 
             $link.trigger('requestStart.hoajax');
             $link.trigger('requestStartGroup.hoajax'+group);
             self.getUrl($link.attr('href'), group, 'GET', {}, function(){
-                $link.button('reset');
+                if (typeof $link.button == 'function') {
+                    $link.button('reset');
+                }
             });
         });
 
-        //check if it works on the product page
         $(document).on('submit requestInit.hoajax', '[data-ho-ajax-form]', function(e){
             var $form = $(this),
                 data = $form.serializeObject(),
