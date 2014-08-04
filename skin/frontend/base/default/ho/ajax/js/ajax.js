@@ -87,7 +87,7 @@ VarienForm.prototype.submit = function (url){
             var $link = $(this),
                 group = $link.data('ho-ajax-link');
 
-            if (typeof $link.button == 'function') {
+            if (typeof $link.button == 'function' && $link.data('loading-text')) {
                 $link.button('loading');
             }
 
