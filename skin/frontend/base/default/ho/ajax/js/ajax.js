@@ -302,31 +302,6 @@ jQuery(function ($) {
     //initialize the module, start watching URL's
     $(document).hoAjax();
 
-    // Initialize the cart and wishlist/
-    var cartDropdownIsOpen = false;
-    var wishlistDropdownIsOpen = false;
-    $(document).on('responseStartGroup.hoajax.cart responseStartGroup.hoajax.wishlist', function(){
-        var $cart = $(document).hoAjax('getBlock', 'cart_header');
-        cartDropdownIsOpen = $cart.hasClass('open');
-
-        var $wishlist = $(document).hoAjax('getBlock', 'wishlist_header');
-        if ($wishlist.length) {
-            wishlistDropdownIsOpen = $wishlist.hasClass('open');
-        }
-    });
-
-    $(document).on('responseFinishGroup.hoajax.cart responseFinishGroup.hoajax.wishlist', function(){
-        if (cartDropdownIsOpen) {
-            var $cart = $(document).hoAjax('getBlock', 'cart_header');
-            $cart.children('a').dropdown('toggle');
-        }
-
-        if (wishlistDropdownIsOpen) {
-            var $wishlist = $(document).hoAjax('getBlock', 'wishlist_header');
-            $wishlist.children('a').dropdown('toggle');
-        }
-    });
-
     $(document).on('responseFinishBlock.hoajax.ho.bootstrapajaxcart.messages', function(){
         $('.alert-overlay').find('>div').each(function(){
             var _this = this;
