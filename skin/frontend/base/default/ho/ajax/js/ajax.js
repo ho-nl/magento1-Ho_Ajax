@@ -152,6 +152,7 @@ VarienForm.prototype.submit = function (url){
             url: url,
             data: $.extend( data, {
                 ho_ajax: 1,
+                no_cache: 1,
                 blocks: Object.keys(this.getBlocks(group))
             }),
             dataType: 'json'
