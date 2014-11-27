@@ -46,8 +46,8 @@ VarienForm.prototype.submit = function (url){
     }
 }
 
-
-;(function ( $, window, document, undefined ) {
+HO_AJAX_AVAILABLE = true;
+(function ( $, window, document, undefined ) {
     "use strict";
 
     var defaults = {
