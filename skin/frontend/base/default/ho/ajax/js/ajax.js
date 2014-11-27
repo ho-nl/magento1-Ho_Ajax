@@ -187,7 +187,7 @@ VarienForm.prototype.submit = function (url){
         $(document).trigger('responseStart.hoajax');
         $(document).trigger('responseStartGroup.hoajax.'+group);
 
-        this._updateBlocks(data.blocks);
+        this._updateBlocks(group, data.blocks);
 
         $(document).trigger('responseFinish.hoajax');
         $(document).trigger('responseFinishGroup.hoajax.'+group);
@@ -209,22 +209,26 @@ VarienForm.prototype.submit = function (url){
 
 
     Plugin.prototype.getBlocks = function (group) {
-        _blocks = {};
-
-        $('[data-ho-ajax]').each(function () {
-            _blocks[$(this).data('ho-ajax')] = $(this);
-        });
-
         if (group == undefined) {
+            _blocks = {};
+
+            $('[data-ho-ajax]').each(function () {
+                _blocks[$(this).data('ho-ajax')] = $(this);
+            });
+
             return _blocks;
         }
 
         var _resultBlocks = {};
-        $.each(_blocks, function(index, element){
-            var elementGroup = $(element).data('ho-ajax-group').split(" ");
+        $('[data-ho-ajax]').each(function () {
+            var $this = $(this);
+            var _gr = $this.data('ho-ajax-group');
+            var elementGroup = _gr ? _gr.split(" ") : [];
 
-            if (elementGroup == undefined || $.inArray(group, elementGroup) >= 0 || $.inArray('all', elementGroup) >= 0) {
-                _resultBlocks[index] = element;
+            if (elementGroup == undefined
+                || $.inArray(group, elementGroup) >= 0
+                || $.inArray('all', elementGroup) >= 0) {
+                _resultBlocks[$this.data('ho-ajax')] = $this;
             }
         });
 
@@ -233,10 +237,10 @@ VarienForm.prototype.submit = function (url){
 
     Plugin.prototype.getBlock = function(blockName) {
         return this.getBlocks()[blockName];
-    }
+    };
 
-    Plugin.prototype._updateBlocks = function(content) {
-        $.each(this.getBlocks(), function (blockName, element) {
+    Plugin.prototype._updateBlocks = function(group, content) {
+        $.each(this.getBlocks(group), function (blockName, element) {
             if (content[blockName] != undefined) {
                 var blockContent = content[blockName].replace(/(\r\n|\n|\r)/gm,"");
                 var $block = $(blockContent);
