@@ -93,8 +93,8 @@ VarienForm.prototype.submit = function (url){
 
             e.preventDefault();
 
-            $link.trigger('requestStart.hoajax');
-            $link.trigger('requestStartGroup.hoajax'+group);
+            $link.trigger('requestStart.hoajax', [$link]);
+            $link.trigger('requestStartGroup.hoajax.'+group, [$link]);
             self.getUrl($link.attr('href'), group, 'GET', {}, function(){
                 if (typeof $link.button == 'function') {
                     $link.button('reset');
@@ -110,8 +110,8 @@ VarienForm.prototype.submit = function (url){
 
             e.preventDefault();
 
-            $form.trigger('requestStart.hoajax');
-            $form.trigger('requestStartGroup.hoajax'+group);
+            $form.trigger('requestStart.hoajax', [$form]);
+            $form.trigger('requestStartGroup.hoajax.'+group, [$form]);
             self.getUrl(url, group, 'POST', data);
             return false;
         });

@@ -122,11 +122,11 @@ We trigger the following events:
 ```JS
 //when a link is pressed, this is triggered immediately
 $link.trigger('requestStart.hoajax');
-$link.trigger('requestStartGroup.hoajax'+group);
+$link.trigger('requestStartGroup.hoajax.'+group);
 
 //when a form is submitted, this is triggered immediately
 $form.trigger('requestStart.hoajax');
-$form.trigger('requestStartGroup.hoajax'+group);
+$form.trigger('requestStartGroup.hoajax.'+group);
 
 //After the response has returned, before rendering all blocks
 $(document).trigger('responseStart.hoajax');
