@@ -152,11 +152,15 @@ HO_AJAX_AVAILABLE = true;
             url: url,
             data: $.extend( data, {
                 ho_ajax: 1,
-                no_cache: 1,
                 blocks: Object.keys(this.getBlocks(group))
             }),
             dataType: 'json'
+        };
+
+        if (decodeURI(url).indexOf("no_cache") > -1) {
+            requestData.data.no_cache = 1;
         }
+
         var request = $.ajax(requestData);
 
         request.done(function(data) {
