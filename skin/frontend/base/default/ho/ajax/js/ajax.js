@@ -106,13 +106,18 @@ HO_AJAX_AVAILABLE = true;
             var $form = $(this),
                 data = $form.serializeObject(),
                 url = $form.attr('action'),
-                group = $form.data('ho-ajax-form');
+                group = $form.data('ho-ajax-form'),
+                button = $form.find(':focus');
 
             e.preventDefault();
 
             $form.trigger('requestStart.hoajax', [$form]);
             $form.trigger('requestStartGroup.hoajax.'+group, [$form]);
-            self.getUrl(url, group, 'POST', data);
+            self.getUrl(url, group, 'POST', data, function(){
+                if (typeof button.button == 'function') {
+                    button.button('reset');
+                }
+            });
             return false;
         });
     };
