@@ -252,8 +252,10 @@ HO_AJAX_AVAILABLE = true;
         $.each(this.getBlocks(group), function (blockName, element) {
             if (content[blockName] != undefined) {
                 var blockContent = content[blockName].replace(/(\r\n|\n|\r)/gm,"");
-                var $block = $(blockContent);
-                element.replaceWith($block);
+
+                $('[data-ho-ajax="'+blockName+'"]').each(function(){
+                    $(this).replaceWith($(blockContent));
+                });
                 $(document).trigger('responseFinishBlock.hoajax.'+blockName);
             }
         });
