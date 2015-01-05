@@ -145,6 +145,11 @@ HO_AJAX_AVAILABLE = true;
             throw new Error('Can\'t retrieve URL when there is no group specified');
         }
 
+        if (url.indexOf('https') !== document.URL.indexOf('https')) {
+            window.location = url;
+            return;
+        }
+
         //Update request count
         if (! _ajaxRequestCount[group]) {
             _ajaxRequestCount[group] = 0;
