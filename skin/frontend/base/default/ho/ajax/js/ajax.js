@@ -217,8 +217,8 @@ HO_AJAX_AVAILABLE = true;
         this._renderError('An Error Occurred', jqxhr.responseText);
     }
 
-    Plugin.prototype.refreshPage = function(group) {
-        this.getUrl(document.URL, group, 'GET');
+    Plugin.prototype.refreshPage = function(group, data) {
+        this.getUrl(document.URL, group, 'GET', data);
     }
 
 
