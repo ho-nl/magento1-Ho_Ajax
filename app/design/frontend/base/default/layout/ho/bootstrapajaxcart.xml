@@ -23,7 +23,7 @@
 <layout>
     <default>
         <reference name="head">
-            <action method="addItem"><type>skin_js</type><script>ho/ajax/js/ajax.js</script><params/><if/><cond/><group>default</group></action>
+            <action method="addItem"><type>js</type><script>ho/ajax/ajax.js</script><params/><if/><cond/><group>default</group></action>
         </reference>
         <reference name="before_body_end">
             <block type="core/template" name="ho.bootstrapajaxcart.messages.holder" template="ho/bootstrapajaxcart/holder.phtml">
