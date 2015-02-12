@@ -35,7 +35,17 @@
     return o;
 };
 
-VarienForm.prototype.submit = function (url){
+/**
+ * Admin panel uses varienForm instead of VarienForm
+ */
+if (typeof VarienForm == "undefined"){
+    var varienFormClass = varienForm;
+} else {
+    var varienFormClass = VarienForm;
+}
+
+
+varienFormClass.prototype.submit = function (url){
     if(this.validator && this.validator.validate()){
         var $form = jQuery(this.form);
         if ($form.data('ho-ajax-form') != undefined) {
@@ -114,7 +124,7 @@ HO_AJAX_AVAILABLE = true;
             $form.trigger('requestStart.hoajax', [$form]);
             $form.trigger('requestStartGroup.hoajax.'+group, [$form]);
             self.getUrl(url, group, 'POST', data, function(){
-                if (typeof button.button == 'function') {
+                if (typeof button.button == 'function' && button.hasClass('btn')) {
                     button.button('reset');
                 }
             });
