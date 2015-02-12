@@ -132,6 +132,9 @@ $form.trigger('requestStartGroup.hoajax.'+group);
 $(document).trigger('responseStart.hoajax');
 $(document).trigger('responseStartGroup.hoajax.'+group);
 
+//Before a block is inserted into the HTML.
+$(document).trigger('responseFinishBlockPrepare.hoajax.'+blockName);
+
 //When a certain block is rendered
 $(document).trigger('responseFinishBlock.hoajax.'+blockName);
 
