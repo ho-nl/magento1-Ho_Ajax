@@ -38,12 +38,12 @@
 /**
  * Admin panel uses varienForm instead of VarienForm
  */
+var varienFormClass
 if (typeof VarienForm == "undefined"){
-    var varienFormClass = varienForm;
+    varienFormClass = varienForm;
 } else {
-    var varienFormClass = VarienForm;
+    varienFormClass = VarienForm;
 }
-
 
 varienFormClass.prototype.submit = function (url){
     if(this.validator && this.validator.validate()){
@@ -177,9 +177,11 @@ HO_AJAX_AVAILABLE = true;
             dataType: 'json'
         };
 
+
         if (decodeURI(url).indexOf("no_cache") > -1) {
             requestData.data.no_cache = 1;
         }
+
 
         var request = $.ajax(requestData);
 
@@ -205,7 +207,7 @@ HO_AJAX_AVAILABLE = true;
         request.fail(function(jqxhr){
             self._processResonseFail(jqxhr);
         });
-    }
+    };
 
     Plugin.prototype._processResponse = function(group, data, requestData) {
         $(document).trigger('responseStart.hoajax');
@@ -216,20 +218,20 @@ HO_AJAX_AVAILABLE = true;
         $(document).trigger('responseFinish.hoajax');
         $(document).trigger('responseFinishGroup.hoajax.'+group);
 
-    }
+    };
 
     Plugin.prototype._processResponseSkipped = function(group, data){
         $(document).trigger('responseSkip.hoajax');
         $(document).trigger('responseSkipGroup.hoajax.'+group);
-    }
+    };
 
     Plugin.prototype._processResonseFail = function(jqxhr){
         this._renderError('An Error Occurred', jqxhr.responseText);
-    }
+    };
 
     Plugin.prototype.refreshPage = function(group, data) {
         this.getUrl(document.URL, group, 'GET', data);
-    }
+    };
 
 
     Plugin.prototype.getBlocks = function (group) {
@@ -275,7 +277,7 @@ HO_AJAX_AVAILABLE = true;
                 $(document).trigger('responseFinishBlock.hoajax.'+blockName);
             }
         });
-    }
+    };
 
     // Render the modal with all the messages
     Plugin.prototype._renderError = function(title, message) {
@@ -286,7 +288,7 @@ HO_AJAX_AVAILABLE = true;
             type: 'danger',
             body: message,
             footer: ''
-        }
+        };
 
         var modal = $(template.evaluate(data));
         //if the modal is closed, we can safely remove it.
@@ -296,7 +298,7 @@ HO_AJAX_AVAILABLE = true;
 
         $('body').append(modal);
         modal.modal('show');
-    }
+    };
 
     // MODAL PLUGIN DEFINITION
     // =======================
@@ -328,7 +330,6 @@ HO_AJAX_AVAILABLE = true;
     };
 
 }(jQuery, window, document));
-
 
 jQuery(function ($) {
     //initialize the module, start watching URL's

@@ -76,7 +76,7 @@ $(document).hoAjax('refreshPage', 'cart');
 
 
 ## Blocks
-In the template of the block that needs to be reloaded, we add two attributes, one with the name of the block and another with the
+In the template of the block that needs to be reloaded, we add two attributes, one with the name of the block and another with the group name
 
 ```HTML
 <div class="cart" data-ho-ajax="<?php echo $this->getNameInLayout(); ?>" data-ho-ajax-group="cart account">

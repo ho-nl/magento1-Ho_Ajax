@@ -27,31 +27,27 @@
 			<version>0.1.0</version>
 		</Ho_BootstrapAjaxCart>
 	</modules>
-	<global>
-		<blocks>
-			<ho_bootstrapajaxcart>
-				<class>Ho_BootstrapAjaxCart_Block</class>
-			</ho_bootstrapajaxcart>
-		</blocks>
-		<helpers>
-			<ho_bootstrapajaxcart>
-				<class>Ho_BootstrapAjaxCart_Helper</class>
-			</ho_bootstrapajaxcart>
-		</helpers>
-		<models>
-			<ho_bootstrapajaxcart>
-				<class>Ho_BootstrapAjaxCart_Model</class>
+    <global>
+        <blocks>
+            <ho_bootstrapajaxcart>
+                <class>Ho_BootstrapAjaxCart_Block</class>
+            </ho_bootstrapajaxcart>
+        </blocks>
+        <helpers>
+            <ho_bootstrapajaxcart>
+                <class>Ho_BootstrapAjaxCart_Helper</class>
+            </ho_bootstrapajaxcart>
+        </helpers>
+        <models>
+            <ho_bootstrapajaxcart>
+                <class>Ho_BootstrapAjaxCart_Model</class>
                 <resourceModel>ho_bootstrapajaxcart_resource</resourceModel>
-			</ho_bootstrapajaxcart>
+            </ho_bootstrapajaxcart>
             <ho_bootstrapajaxcart_resource>
                 <class>Ho_BootstrapAjaxCart_Model_Resource</class>
-                <!--<entities>-->
-                    <!--<tablename>-->
-                        <!--<table>ho_bootstrapajaxcart_tablename</table>-->
-                    <!--</tablename>-->
-                <!--</entities>-->
+                <!--<entities>--><!--<tablename>--><!--<table>ho_bootstrapajaxcart_tablename</table>--><!--</tablename>--><!--</entities>-->
             </ho_bootstrapajaxcart_resource>
-		</models>
+        </models>
         <resources>
             <ho_bootstrapajaxcart_setup>
                 <setup>
@@ -60,19 +56,44 @@
                 </setup>
             </ho_bootstrapajaxcart_setup>
         </resources>
-
-		<!--<events>-->
-			<!--<http_response_send_before>-->
-				<!--<observers>-->
-					<!--<ho_bootstrapajaxcart_head_observer>-->
-						<!--<type>singleton</type>-->
-						<!--<class>Ho_BootstrapAjaxCart_Model_Observer</class>-->
-						<!--<method>check</method>-->
-					<!--</ho_bootstrapajaxcart_head_observer>-->
-				<!--</observers>-->
-			<!--</http_response_send_before>-->
-		<!--</events>-->
-	</global>
+        <events>
+            <controller_action_layout_load_before>
+                <observers>
+                    <ho_ajax>
+                        <type>singleton</type>
+                        <class>ho_bootstrapajaxcart/observer</class>
+                        <method>addHandles</method>
+                    </ho_ajax>
+                </observers>
+            </controller_action_layout_load_before>
+            <controller_action_layout_render_before>
+                <observers>
+                    <ho_ajax>
+                        <type>singleton</type>
+                        <class>ho_bootstrapajaxcart/observer</class>
+                        <method>getJson</method>
+                    </ho_ajax>
+                </observers>
+            </controller_action_layout_render_before>
+            <controller_response_redirect>
+                <observers>
+                    <ho_ajax>
+                        <type>singleton</type>
+                        <class>ho_bootstrapajaxcart/observer</class>
+                        <method>handleRedirect</method>
+                    </ho_ajax>
+                </observers>
+            </controller_response_redirect>
+        </events>
+        <layout>
+            <updates>
+                <ho_bootstrapajaxcart module="ho_bootstrapajaxcart">
+                    <file>ho/bootstrapajaxcart.xml</file>
+                </ho_bootstrapajaxcart>
+            </updates>
+        </layout>
+        <!--<events>-->            <!--<http_response_send_before>-->                <!--<observers>-->                    <!--<ho_bootstrapajaxcart_head_observer>-->                        <!--<type>singleton</type>-->                        <!--<class>Ho_BootstrapAjaxCart_Model_Observer</class>-->                        <!--<method>check</method>-->                    <!--</ho_bootstrapajaxcart_head_observer>-->                <!--</observers>-->            <!--</http_response_send_before>-->        <!--</events>-->
+    </global>
 	<frontend>
 		<!--<routers>-->
 			<!--<ho_bootstrapajaxcart>-->
@@ -83,42 +104,6 @@
 				<!--</args>-->
 			<!--</ho_bootstrapajaxcart>-->
 		<!--</routers>-->
-		<layout>
-			<updates>
-				<ho_bootstrapajaxcart module="ho_bootstrapajaxcart">
-					<file>ho/bootstrapajaxcart.xml</file>
-				</ho_bootstrapajaxcart>
-			</updates>
-		</layout>
-        <events>
-            <controller_action_layout_load_before>
-                <observers>
-                    <ho_bootstrapajaxcart>
-                        <type>singleton</type>
-                        <class>ho_bootstrapajaxcart/observer</class>
-                        <method>addHandles</method>
-                    </ho_bootstrapajaxcart>
-                </observers>
-            </controller_action_layout_load_before>
-            <controller_action_layout_render_before>
-                <observers>
-                    <ho_bootstrapajaxcart>
-                        <type>singleton</type>
-                        <class>ho_bootstrapajaxcart/observer</class>
-                        <method>getJson</method>
-                    </ho_bootstrapajaxcart>
-                </observers>
-            </controller_action_layout_render_before>
-            <controller_response_redirect>
-                <observers>
-                    <ho_bootstrapajaxcart>
-                        <type>singleton</type>
-                        <class>ho_bootstrapajaxcart/observer</class>
-                        <method>handleRedirect</method>
-                    </ho_bootstrapajaxcart>
-                </observers>
-            </controller_response_redirect>
-        </events>
         <!--<translate>-->
             <!--<modules>-->
                 <!--<ho_bootstrapajaxcart>-->
