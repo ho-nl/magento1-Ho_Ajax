@@ -50,11 +50,32 @@ varienFormClass.prototype.submit = function (url){
         var $form = jQuery(this.form);
         if ($form.data('ho-ajax-form') != undefined) {
             $form.trigger('requestInit.hoajax');
-        } else {
+        } else if (this.form != undefined)  {
             this.form.submit();
+        } else {
+            this.adminSubmit();
         }
     }
 }
+
+varienFormClass.prototype.adminSubmit =function(url){
+    if (typeof varienGlobalEvents != undefined) {
+        varienGlobalEvents.fireEvent('formSubmit', this.formId);
+    }
+    this.errorSections = $H({});
+    this.canShowError = true;
+    this.submitUrl = url;
+    if(this.validator && this.validator.validate()){
+        if(this.validationUrl){
+            this._validate();
+        }
+        else{
+            this._submit();
+        }
+        return true;
+    }
+    return false;
+};
 
 HO_AJAX_AVAILABLE = true;
 (function ( $, window, document, undefined ) {
@@ -125,7 +146,7 @@ HO_AJAX_AVAILABLE = true;
             $form.trigger('requestStartGroup.hoajax.'+group, [$form]);
             self.getUrl(url, group, 'POST', data, function(){
                 if (typeof button.button == 'function' && button.hasClass('btn')) {
-                    button.button('reset');
+                    //button.button('reset');
                 }
             });
             return false;
