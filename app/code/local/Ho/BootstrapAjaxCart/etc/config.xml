@@ -95,6 +95,13 @@
         <!--<events>-->            <!--<http_response_send_before>-->                <!--<observers>-->                    <!--<ho_bootstrapajaxcart_head_observer>-->                        <!--<type>singleton</type>-->                        <!--<class>Ho_BootstrapAjaxCart_Model_Observer</class>-->                        <!--<method>check</method>-->                    <!--</ho_bootstrapajaxcart_head_observer>-->                <!--</observers>-->            <!--</http_response_send_before>-->        <!--</events>-->
     </global>
 	<frontend>
+        <layout>
+            <updates>
+                <ho_bootstrapajaxcart module="ho_bootstrapajaxcart">
+                    <file>ho/bootstrapajaxcart.xml</file>
+                </ho_bootstrapajaxcart>
+            </updates>
+        </layout>
 		<!--<routers>-->
 			<!--<ho_bootstrapajaxcart>-->
 				<!--<use>standard</use>-->
@@ -115,6 +122,13 @@
         <!--</translate>-->
 	</frontend>
     <adminhtml>
+        <layout>
+            <updates>
+                <ho_bootstrapajaxcart module="ho_bootstrapajaxcart">
+                    <file>ho/bootstrapajaxcart.xml</file>
+                </ho_bootstrapajaxcart>
+            </updates>
+        </layout>
         <!--<translate>-->
             <!--<modules>-->
                 <!--<ho_bootstrapajaxcart>-->
