@@ -45,7 +45,11 @@
             </ho_bootstrapajaxcart>
             <ho_bootstrapajaxcart_resource>
                 <class>Ho_BootstrapAjaxCart_Model_Resource</class>
-                <!--<entities>--><!--<tablename>--><!--<table>ho_bootstrapajaxcart_tablename</table>--><!--</tablename>--><!--</entities>-->
+                <!--<entities>-->
+                    <!--<tablename>-->
+                        <!--<table>ho_bootstrapajaxcart_tablename</table>-->
+                    <!--</tablename>-->
+                <!--</entities>-->
             </ho_bootstrapajaxcart_resource>
         </models>
         <resources>
@@ -92,7 +96,17 @@
                 </ho_bootstrapajaxcart>
             </updates>
         </layout>
-        <!--<events>-->            <!--<http_response_send_before>-->                <!--<observers>-->                    <!--<ho_bootstrapajaxcart_head_observer>-->                        <!--<type>singleton</type>-->                        <!--<class>Ho_BootstrapAjaxCart_Model_Observer</class>-->                        <!--<method>check</method>-->                    <!--</ho_bootstrapajaxcart_head_observer>-->                <!--</observers>-->            <!--</http_response_send_before>-->        <!--</events>-->
+        <!--<events>-->
+            <!--<http_response_send_before>-->
+                <!--<observers>-->
+                    <!--<ho_bootstrapajaxcart_head_observer>-->
+                        <!--<type>singleton</type>-->
+                        <!--<class>Ho_BootstrapAjaxCart_Model_Observer</class>-->
+                        <!--<method>check</method>-->
+                    <!--</ho_bootstrapajaxcart_head_observer>-->
+                <!--</observers>-->
+            <!--</http_response_send_before>-->
+        <!--</events>-->
     </global>
 	<frontend>
         <layout>
