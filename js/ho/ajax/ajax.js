@@ -138,7 +138,7 @@ HO_AJAX_AVAILABLE = true;
                 data = $form.serializeObject(),
                 url = $form.attr('action'),
                 group = $form.data('ho-ajax-form'),
-                button = $form.find(':focus');
+                button = $form.find('.btn');
 
             e.preventDefault();
 
@@ -146,7 +146,7 @@ HO_AJAX_AVAILABLE = true;
             $form.trigger('requestStartGroup.hoajax.'+group, [$form]);
             self.getUrl(url, group, 'POST', data, function(){
                 if (typeof button.button == 'function' && button.hasClass('btn')) {
-                    //button.button('reset');
+                    button.button('reset');
                 }
             });
             return false;
