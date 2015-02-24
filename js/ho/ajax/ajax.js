@@ -294,6 +294,7 @@ HO_AJAX_AVAILABLE = true;
                 $(document).trigger('responseFinishBlockPrepare.hoajax.'+blockName, blockContent);
                 $('[data-ho-ajax="'+blockName+'"]').each(function(){
                     $(this).replaceWith(blockContent);
+                    blockContent = blockContent.clone();
                 });
                 $(document).trigger('responseFinishBlock.hoajax.'+blockName);
             }
