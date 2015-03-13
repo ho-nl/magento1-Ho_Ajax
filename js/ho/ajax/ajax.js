@@ -293,8 +293,16 @@ HO_AJAX_AVAILABLE = true;
 
                 $(document).trigger('responseFinishBlockPrepare.hoajax.'+blockName, blockContent);
                 $('[data-ho-ajax="'+blockName+'"]').each(function(){
-                    $(this).replaceWith(blockContent);
-                    blockContent = blockContent.clone();
+                    var $this = $(this);
+                    var _gr = $this.data('ho-ajax-group');
+                    var elementGroup = _gr ? _gr.split(" ") : [];
+
+                    if (elementGroup == undefined
+                        || $.inArray(group, elementGroup) >= 0
+                        || $.inArray('all', elementGroup) >= 0) {
+                        $(this).replaceWith(blockContent);
+                        blockContent = blockContent.clone();
+                    }
                 });
                 $(document).trigger('responseFinishBlock.hoajax.'+blockName);
             }
