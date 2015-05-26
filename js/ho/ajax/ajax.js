@@ -195,7 +195,8 @@ HO_AJAX_AVAILABLE = true;
                 ho_ajax: 1,
                 blocks: Object.keys(this.getBlocks(group))
             }),
-            dataType: 'json'
+            dataType: 'json',
+            cache: false
         };
 
 
