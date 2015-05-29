@@ -118,6 +118,15 @@ HO_AJAX_AVAILABLE = true;
             var $link = $(this),
                 group = $link.data('ho-ajax-link');
 
+            if($link.hasClass('btn-confirm')){
+                var msg = $link.data('confirm-text');
+                var confirm = window.confirm(msg ? msg : Translator.translate('Are you sure?'));
+                if (! confirm) {
+                    e.stopPropagation();
+                    return false;
+                }
+            }
+
             if (typeof $link.button == 'function' && $link.data('loading-text')) {
                 $link.button('loading');
             }
