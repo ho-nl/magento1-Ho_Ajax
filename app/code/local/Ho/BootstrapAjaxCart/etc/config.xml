@@ -111,9 +111,9 @@
 	<frontend>
         <layout>
             <updates>
-                <ho_ajax module="ho_bootstrapajaxcart">
-                    <file>ho/ajax.xml</file>
-                </ho_ajax>
+                <ho_bootstrapajaxcart module="ho_bootstrapajaxcart">
+                    <file>ho/bootstrapajaxcart.xml</file>
+                </ho_bootstrapajaxcart>
             </updates>
         </layout>
 		<!--<routers>-->
@@ -138,9 +138,9 @@
     <adminhtml>
         <layout>
             <updates>
-                <ho_ajax module="ho_bootstrapajaxcart">
-                    <file>ho/ajax.xml</file>
-                </ho_ajax>
+                <ho_bootstrapajaxcart module="ho_bootstrapajaxcart">
+                    <file>ho/bootstrapajaxcart.xml</file>
+                </ho_bootstrapajaxcart>
             </updates>
         </layout>
         <!--<translate>-->

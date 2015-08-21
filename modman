@@ -3,6 +3,7 @@ app/code/local/Ho/BootstrapAjaxCart/                  app/code/local/Ho/Bootstra
 app/etc/modules/*                                     app/etc/modules/
 app/design/frontend/base/default/layout/ho/*          app/design/frontend/base/default/layout/ho/
 app/design/frontend/base/default/template/ho/*        app/design/frontend/base/default/template/ho/
-app/design/adminhtml/default/default/layout/ho/*      app/design/adminhtml/default/default/layout/ho/
+#app/design/adminhtml/default/default/layout/ho/*     app/design/adminhtml/default/default/layout/ho/
+#app/design/adminhtml/default/default/template/ho/*   app/design/adminhtml/default/default/template/ho/
 #js/ho/bootstrapajaxcart/*                            js/ho/bootstrapajaxcart/
 js/ho/ajax/*                                          js/ho/ajax/
