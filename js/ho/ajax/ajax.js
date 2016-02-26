@@ -208,11 +208,9 @@ HO_AJAX_AVAILABLE = true;
             cache: false
         };
 
-
-        if (decodeURI(url).indexOf("no_cache") > -1) {
+        if (decodeURI(url).indexOf("no_cache") == -1) {
             requestData.data.no_cache = 1;
         }
-
 
         var request = $.ajax(requestData);
 
