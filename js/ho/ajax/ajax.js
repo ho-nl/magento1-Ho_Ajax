@@ -197,6 +197,12 @@ HO_AJAX_AVAILABLE = true;
         }
         var ajaxRequestNumber = ++_ajaxRequestCount[group];
 
+
+        if (decodeURI(url).indexOf("no_cache") == -1) {
+            var key = decodeURI(url).indexOf("?") == -1 ? '?' : '&';
+            url = url + key + '?no_cache=1'
+        }
+
         var requestData = {
             type: type,
             url: url,
@@ -207,10 +213,6 @@ HO_AJAX_AVAILABLE = true;
             dataType: 'json',
             cache: false
         };
-
-        if (decodeURI(url).indexOf("no_cache") == -1) {
-            requestData.data.no_cache = 1;
-        }
 
         var request = $.ajax(requestData);
 
