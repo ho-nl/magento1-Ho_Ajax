@@ -44,6 +44,7 @@ class Ho_BootstrapAjaxCart_Model_Observer
         $url = $urlHelper->removeRequestParam($url, 'blocks[]');
         $url = $urlHelper->removeRequestParam($url, 'ho_ajax');
         $url = $urlHelper->removeRequestParam($url, 'redirect');
+        $url = $urlHelper->removeRequestParam($url, '_');
         return $url;
     }
 
