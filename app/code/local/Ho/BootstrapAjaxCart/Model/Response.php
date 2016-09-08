@@ -26,21 +26,34 @@
 class Ho_BootstrapAjaxCart_Model_Response extends Varien_Object
 {
     /**
-     * Send response to browser with json content type
+     * @return Zend_Controller_Response_Http
      */
-    public function sendResponse()
+    public function prepareResponse()
     {
         $response = Mage::app()->getResponse();
         $response->clearHeaders();
         $response->setHeader('Content-Type', 'application/json');
         $response->clearBody();
         $response->setBody($this->toJson());
-        $response->sendResponse();
-        exit;
+        return $response;
     }
 
+    /**
+     * Send response to browser with json content type
+     * @param Zend_Controller_Response_Http $response
+     */
+    public function sendResponse(Zend_Controller_Response_Http $response)
+    {
+        $response->sendResponse();
+        exit(0);
+    }
+
+
+    /**
+     * @param $url
+     */
     public function handleRedirect($url) {
-        $this->setRedirect($url);
+        $this->setData('redirect', $url);
     }
 
 
