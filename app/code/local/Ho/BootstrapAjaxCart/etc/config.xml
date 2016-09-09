@@ -51,6 +51,11 @@
                     <!--</tablename>-->
                 <!--</entities>-->
             </ho_bootstrapajaxcart_resource>
+            <enterprise_pagecache>
+                <rewrite>
+                    <observer>Ho_BootstrapAjaxCart_Model_PageCacheObserver</observer>
+                </rewrite>
+            </enterprise_pagecache>
         </models>
         <resources>
             <ho_bootstrapajaxcart_setup>

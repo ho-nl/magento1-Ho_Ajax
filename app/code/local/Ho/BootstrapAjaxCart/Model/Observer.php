@@ -1,4 +1,5 @@
 <?php
+
 /**
  * Ho_BootstrapAjaxCart
  *
@@ -18,25 +19,27 @@
  * @license     http://opensource.org/licenses/osl-3.0.php  Open Software License (OSL 3.0)
  * @author      Paul Hachmang – H&O <info@h-o.nl>
  */
- 
 class Ho_BootstrapAjaxCart_Model_Observer
 {
     /**
      * @event controller_response_redirect
      * @param Varien_Event_Observer $event
      */
-    public function handleRedirect(Varien_Event_Observer $event) {
+    public function handleRedirect(Varien_Event_Observer $event)
+    {
         $core = $this->_getCore();
         if ($core->isHoAjax() && !$core->isProceed()) {
             $core->setProceed();
 
-            $response = Mage::getModel('ho_bootstrapajaxcart/response');
-            $response->handleRedirect($this->_prepareRedirectUrl($event->getTransport()->getUrl()));
-            $response->sendResponse();
+            /** @var Ho_BootstrapAjaxCart_Model_Response $ajaxResponse */
+            $ajaxResponse = Mage::getModel('ho_bootstrapajaxcart/response');
+            $ajaxResponse->handleRedirect($this->_prepareRedirectUrl($event->getTransport()->getUrl()));
+            $ajaxResponse->sendResponse($ajaxResponse->prepareResponse());
         }
     }
 
-    protected function _prepareRedirectUrl($url) {
+    protected function _prepareRedirectUrl($url)
+    {
         /** @var Mage_Core_Helper_Url $urlHelper */
         $urlHelper = Mage::helper('core/url');
         $url = rawurldecode($url);
@@ -52,18 +55,30 @@ class Ho_BootstrapAjaxCart_Model_Observer
      * Add Json to response instead of default data
      * @event controller_action_layout_render_before
      */
-    public function getJson(Varien_Event_Observer $event) {
+    public function getJson(Varien_Event_Observer $event)
+    {
         $core = $this->_getCore();
-        if ($core->isHoAjax() && !$core->isProceed()) {
-            $core->setProceed();
-            /** @var $response Ho_BootstrapAjaxCart_Model_Response */
-            $response = Mage::getModel('ho_bootstrapajaxcart/response');
-
-            $response->loadContent(
-                (array) Mage::app()->getRequest()->getParam('blocks', array())
-            );
-            $response->sendResponse();
+        if (!$core->isHoAjax() || $core->isProceed()) {
+            return ;
         }
+
+        $core->setProceed();
+
+        /** @var $ajaxResponse Ho_BootstrapAjaxCart_Model_Response */
+        $ajaxResponse = Mage::getModel('ho_bootstrapajaxcart/response');
+
+        $ajaxResponse->loadContent(
+            (array)Mage::app()->getRequest()->getParam('blocks', array())
+        );
+
+        $response = $ajaxResponse->prepareResponse();
+
+        if (Mage::helper('core')->isModuleEnabled('Enterprise_PageCache')) {
+            $pageCacheObserver = Mage::getSingleton('enterprise_pagecache/observer');
+            $pageCacheObserver->cacheHoAjaxResponse(Mage::app()->getRequest(), $response);
+        }
+
+        $ajaxResponse->sendResponse($response);
     }
 
     /**
@@ -71,8 +86,9 @@ class Ho_BootstrapAjaxCart_Model_Observer
      * @event controller_action_layout_load_before
      * @param Varien_Event_Observer $event
      */
-    public function addHandles(Varien_Event_Observer $event) {
-        if (! $core = $this->_getCore()->isHoAjax()) {
+    public function addHandles(Varien_Event_Observer $event)
+    {
+        if (!$core = $this->_getCore()->isHoAjax()) {
             return;
         }
 
@@ -96,7 +112,7 @@ class Ho_BootstrapAjaxCart_Model_Observer
             }
 
             if ($handle == $fullActionName) {
-                $update->addHandle('ho_ajax_'.$fullActionName);
+                $update->addHandle('ho_ajax_' . $fullActionName);
             }
         }
     }
@@ -105,7 +121,8 @@ class Ho_BootstrapAjaxCart_Model_Observer
     /**
      * @return Ho_BootstrapAjaxCart_Model_Core
      */
-    protected function _getCore() {
+    protected function _getCore()
+    {
         return Mage::getSingleton('ho_bootstrapajaxcart/core');
     }
 }

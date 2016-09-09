@@ -198,7 +198,8 @@ HO_AJAX_AVAILABLE = true;
         var ajaxRequestNumber = ++_ajaxRequestCount[group];
 
 
-        if (decodeURI(url).indexOf("no_cache") == -1) {
+        var decodedUri = decodeURI(url);
+        if (decodedUri.indexOf("no_cache") == -1 && decodedUri.indexOf("allow_cache") == -1) {
             var key = decodeURI(url).indexOf("?") < 0 ? '?' : '&';
             url = url + key + 'no_cache=1'
         }
