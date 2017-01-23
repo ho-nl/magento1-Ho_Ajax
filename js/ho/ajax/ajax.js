@@ -236,7 +236,12 @@ HO_AJAX_AVAILABLE = true;
             }
         });
 
-        request.fail(function(jqxhr){
+        request.fail(function(jqxhr) {
+            // Aborted request.
+            if (jqxhr.status === 0) {
+                return;
+            }
+
             self._processResonseFail(jqxhr);
         });
     };
