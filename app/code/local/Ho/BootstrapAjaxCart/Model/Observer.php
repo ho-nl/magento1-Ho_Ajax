@@ -125,4 +125,14 @@ class Ho_BootstrapAjaxCart_Model_Observer
     {
         return Mage::getSingleton('ho_bootstrapajaxcart/core');
     }
+
+    /**
+     * @throws Mage_Core_Exception
+     */
+    public function disableEsiIncludesWhenHoAjax()
+    {
+        if ($this->_getCore()->isHoAjax()) {
+            Mage::register('replace_form_key', false, true);
+        }
+    }
 }

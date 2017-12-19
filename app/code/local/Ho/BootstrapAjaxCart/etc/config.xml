@@ -93,6 +93,15 @@
                     </ho_ajax>
                 </observers>
             </controller_response_redirect>
+            <controller_front_init_before>
+                <observers>
+                    <xx_ho_ajax>
+                        <type>singleton</type>
+                        <class>ho_bootstrapajaxcart/observer</class>
+                        <method>disableEsiIncludesWhenHoAjax</method>
+                    </xx_ho_ajax>
+                </observers>
+            </controller_front_init_before>
         </events>
         <layout>
             <updates>
