@@ -132,7 +132,8 @@ class Ho_BootstrapAjaxCart_Model_Observer
     public function disableEsiIncludesWhenHoAjax()
     {
         if ($this->_getCore()->isHoAjax()) {
-            Mage::register('replace_form_key', false, true);
+            Mage::unregister('replace_form_key');
+            Mage::register('replace_form_key', false);
         }
     }
 }
