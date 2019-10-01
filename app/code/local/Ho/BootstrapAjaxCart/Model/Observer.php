@@ -34,6 +34,12 @@ class Ho_BootstrapAjaxCart_Model_Observer
             /** @var Ho_BootstrapAjaxCart_Model_Response $ajaxResponse */
             $ajaxResponse = Mage::getModel('ho_bootstrapajaxcart/response');
             $ajaxResponse->handleRedirect($this->_prepareRedirectUrl($event->getTransport()->getUrl()));
+
+            // If not logged in show a message for the ajax login
+            if (!Mage::getSingleton('customer/session')->isLoggedIn()) {
+                $ajaxResponse->setData('message', Mage::helper('customer')->__('Invalid login or password.'));
+                $ajaxResponse->setData('title', Mage::helper('ho_bootstrapajaxcart')->__('Login'));
+            }
             $ajaxResponse->sendResponse($ajaxResponse->prepareResponse());
         }
     }
