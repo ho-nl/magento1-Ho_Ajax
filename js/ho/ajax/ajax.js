@@ -221,6 +221,10 @@ HO_AJAX_AVAILABLE = true;
             if (ajaxRequestNumber > _ajaxResultCount[group]) { //check if it is newer
                 _ajaxResultCount[group] = ajaxRequestNumber; //set the current request as newest
 
+                if (data.message != undefined && data.title != undefined) {
+                    self.showMessage(data);
+                }
+
                 if (data.redirect != undefined) {
                     self.getUrl(data.redirect, group, type, data, callback);
                     return;
@@ -264,6 +268,10 @@ HO_AJAX_AVAILABLE = true;
 
     Plugin.prototype._processResonseFail = function(jqxhr){
         this._renderError('An Error Occurred', jqxhr.responseText);
+    };
+
+    Plugin.prototype.showMessage = function(data){
+        this._renderError(data.title, data.message);
     };
 
     Plugin.prototype.refreshPage = function(group, data) {
