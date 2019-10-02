@@ -36,7 +36,7 @@ class Ho_BootstrapAjaxCart_Model_Observer
             $ajaxResponse->handleRedirect($this->_prepareRedirectUrl($event->getTransport()->getUrl()));
 
             // If not logged in show a message for the ajax login
-            if (!Mage::getSingleton('customer/session')->isLoggedIn()) {
+            if (!Mage::getSingleton('customer/session')->isLoggedIn() && Mage::app()->getRequest()->getModuleName() == 'customer' && Mage::app()->getRequest()->getControllerName() == 'account' && Mage::app()->getRequest()->getActionName() == 'loginPost') {
                 $ajaxResponse->setData('message', Mage::helper('customer')->__('Invalid login or password.'));
                 $ajaxResponse->setData('title', Mage::helper('ho_bootstrapajaxcart')->__('Login'));
             }
