@@ -142,4 +142,10 @@ class Ho_BootstrapAjaxCart_Model_Observer
             Mage::register('replace_form_key', false);
         }
     }
+
+    public function addSessionMessage(Varien_Event_Observer $event)
+    {
+        $messages = Mage::getSingleton('checkout/session')->getMessages(false)->getErrors();
+        Mage::getSingleton('checkout/session')->setData('checkout_messages', $messages);
+    }
 }
