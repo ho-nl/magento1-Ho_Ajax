@@ -31,6 +31,14 @@ class Ho_BootstrapAjaxCart_Block_Messages extends Mage_Core_Block_Template
         $messagesBlock = $this->getMessagesBlock();
         $messages = $messagesBlock->getMessages();
         $messagesBlock->getMessageCollection()->clear();
+
+        $checkoutMessages = Mage::getSingleton('checkout/session')->getData('checkout_messages');
+        if ($checkoutMessages) {
+            foreach ($checkoutMessages as $checkoutMessage) {
+                $messages[] = $checkoutMessage;
+            }
+            Mage::getSingleton('checkout/session')->setData('checkout_messages', null);
+        }
         return $messages;
     }
 

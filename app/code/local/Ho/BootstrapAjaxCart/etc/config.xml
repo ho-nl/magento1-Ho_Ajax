@@ -102,6 +102,15 @@
                     </xx_ho_ajax>
                 </observers>
             </controller_front_init_before>
+            <core_session_abstract_add_message>
+                <observers>
+                    <ho_ajax_intercept_add_message>
+                        <type>singleton</type>
+                        <class>ho_bootstrapajaxcart/observer</class>
+                        <method>addSessionMessage</method>
+                    </ho_ajax_intercept_add_message>
+                </observers>
+            </core_session_abstract_add_message>
         </events>
         <layout>
             <updates>
